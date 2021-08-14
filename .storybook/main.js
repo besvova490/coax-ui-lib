@@ -1,20 +1,28 @@
 const path = require("path");
 
 module.exports = {
-  stories: ["../stories/*.stories.tsx"],
-  // Add any Storybook addons you want here: https://storybook.js.org/addons/
-  addons: [],
+  stories: ["../stories/**/*.stories.tsx"],
+  addons: [
+    "storybook-addon-designs",
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+  ],
   webpackFinal: async (config) => {
+
     config.module.rules.push({
-      test: /\.scss$/,
-      use: ["style-loader", {
-        loader: "css-loader",
-        options: {
-          modules: true,
-        },
-      }, "sass-loader"],
+      test: /\.module.scss$/,
+      use: ["style-loader", "css-loader?modules&importLoaders", "sass-loader"],
       include: path.resolve(__dirname, "../")
     });
+
+    config.module.rules.push({
+      test: /\.scss$/,
+      exclude: /\.module.(s(a|c)ss)$/,
+      use: ["style-loader", "css-loader", "sass-loader"],
+      include: path.resolve(__dirname, "../")
+    });
+
+    config.module.rules.push({ test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' });
 
     config.module.rules.push({
       test: /\.(ts|tsx)$/,

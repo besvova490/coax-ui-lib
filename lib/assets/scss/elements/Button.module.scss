@@ -1,0 +1,204 @@
+@import "lib/assets/scss/variables/colors";
+
+
+.btn {
+  padding: 7px 16px;
+  height: 32px;
+  transition: all 0.2s;
+  cursor: default;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &_primary {
+    background-color: $primary-color-0;
+    color: $white-color-0;
+
+    &:hover {
+      background-color: $primary-color-100;
+      cursor: pointer;
+    }
+
+    &.btn_disabled {
+      cursor: not-allowed;
+      background-color: $grayscale-color-200;
+      color: $grayscale-color-400;
+    }
+  }
+
+  &_default {
+    background-color: transparent;
+    color: $primary-color-0;
+    border-color: $primary-color-0;
+
+    &:hover {
+      border-color: $primary-color-100;
+      color: $primary-color-100;
+      cursor: pointer;
+    }
+
+    &.btn_disabled {
+      cursor: not-allowed;
+      border-color: $gray-shade-04-light;
+      color: $gray-shade-04-light;
+    }
+  }
+
+  &_text {
+    background-color: transparent;
+    color: $primary-color-0;
+
+    &:not(.btn_disabled):hover {
+      color: $primary-color-100;
+      background-color: $gray-shade-01-light;
+      cursor: pointer;
+    }
+
+    &.btn_disabled {
+      cursor: not-allowed;
+      color: $gray-shade-04-light;
+    }
+  }
+
+  &_round {
+    border-radius: 4px;
+  }
+
+  &_circle {
+    border-radius: 100%;
+  }
+
+  &_square {
+    border-radius: 0;
+  }
+
+  &_with-icon {
+    padding: 8px 12px;
+  }
+
+  &_size-middle {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  &_size-middle.btn_with-icon {
+    padding: 7px 12px;
+  }
+
+  &_size-large {
+    padding: 9px 24px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  &_size-middle.btn_with-icon {
+    padding: 8px 12px;
+  }
+
+  &_size-small {
+    height: 24px;
+    font-size: 12px;
+    line-height: 20px;
+    padding: 2px 8px;
+  }
+
+  &_size-small.btn_with-icon {
+    padding: 4px;
+  }
+
+  &_full-width {
+    width: 100%;
+    flex: 0 0 100%;
+  }
+
+  &__icon {
+    line-height: 1px;
+
+    &_left {
+      margin-right: 8px;
+    }
+    &_right {
+      margin-left: 8px;
+    }
+  }
+
+  &__label {
+    font-family: Paragraph;
+    font-weight: 500;
+  }
+}
+
+.btn-icon {
+  padding: 0;
+  width: 32px;
+  justify-content: center;
+  align-items: center;
+
+  &.btn {
+    &_size-large {
+      padding: 0;
+      width: 40px;
+    }
+  
+    &_size-small {
+      width: 24px;
+      padding: 0;
+    }
+  }
+}
+
+.btn-socials {
+  &__apple {
+    background-color: $black-color-0;
+
+    &:not(.btn_disabled):hover {
+      background-color: $black-color-01-light;
+    }
+
+    &.btn_disabled {
+      color: $white-color-0;
+      background-color: $gray-shade-04-light;
+    }
+  }
+
+  &__google {
+    background-color: $white-color-0;
+    border-color: $gray-shade-02-light;
+    color: $black-color-0;
+
+    &:not(.btn_disabled):hover {
+      border-color: transparent;
+      background-color: $gray-shade-01-light;
+    }
+
+    &.btn_disabled {
+      color: $white-color-0;
+      border-color: transparent;
+      background-color: $gray-shade-04-light;
+    }
+  }
+
+  &__facebook {
+    &.btn_disabled {
+      color: $white-color-0;
+    }
+  }
+
+  &__git-lub {
+    color: $white-color-0;
+    background-color: $purple-shade-04-light;
+
+    &:not(.btn_disabled):hover {
+      border-color: transparent;
+      background-color: $purple-shade-05-light;
+    }
+
+    &.btn_disabled {
+      color: $white-color-0;
+      border-color: transparent;
+      background-color: $gray-shade-04-light;
+    }
+  }
+}

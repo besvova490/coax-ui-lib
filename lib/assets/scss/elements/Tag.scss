@@ -1,0 +1,68 @@
+@import "lib/assets/scss/variables/colors";
+
+.tag {
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 8px;
+  line-height: 22px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid transparent;
+  font-family: Paragraph;
+  background-color: $primary-color-0;
+  transition: .2s all;
+  border-radius: 4px;
+  color: $white-color-0;
+  cursor: pointer;
+
+  &__icon {
+    margin-right: -4px;
+    margin-left: 4px;
+  }
+
+  &:not(&_default):not(&_disabled):hover {
+    background-color: $primary-color-100;
+  }
+
+  &_disabled {
+    cursor: not-allowed;
+    background-color: $grayscale-color-200;
+    color: $grayscale-color-400;
+
+    .tag__icon {
+      color: $grayscale-color-400;
+    }
+  }
+
+  &_default {
+    background-color: transparent;
+    border-color: $primary-color-0;
+    color: $primary-color-0;
+
+    .tag__icon {
+      color: $primary-color-0;
+    }
+
+    &:hover {
+      border-color: $primary-color-100;
+      color: $primary-color-100;
+
+      .tag__icon {
+        color: $primary-color-100;
+      }
+    }
+
+    &.tag {
+      &_disabled {
+        cursor: not-allowed;
+        border-color: $grayscale-color-200;
+        color: $grayscale-color-400;
+
+        .tag__icon {
+          color: $grayscale-color-400;
+        }
+      }
+    }
+  }
+}

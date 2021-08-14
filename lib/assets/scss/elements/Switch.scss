@@ -1,0 +1,178 @@
+@import "lib/assets/scss/variables/colors";
+
+.switch {
+  height: 24px;
+  width: 40px;
+  border: 1px solid $grayscale-color-200;
+  border-radius: 12px;
+  position: relative;
+  display: inline-block;
+  transition: .2s all ease-in-out;
+
+  &__wrapper {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__label {
+    font-family: Paragraph;
+    margin-left: 8px;
+  }
+
+  &:not(&_disabled):hover {
+    background-color: $grayscale-color-100;
+  }
+
+  &_checked {
+    background-color: $primary-color-0;
+    border-color: transparent;
+
+    .switch__handle {
+      left: calc(100% - 18px - 2px);
+
+      &:before {
+        background-color: $white-color-0;
+      }
+    }
+
+    &:not(.switch_disabled):hover {
+      background-color: $primary-color-100;
+    }
+  }
+
+  &_disabled {
+    cursor: not-allowed;
+    background-color: $grayscale-color-200;
+
+    .switch__handle {
+        &:before {
+          background-color: $grayscale-color-100;
+        }
+      }
+
+    & + .switch__label {
+      color: $grayscale-color-400;
+    }
+  }
+
+  &__handle {
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    top: 2px;
+    left: 2px;
+    transition: all .2s;
+
+    &:before {
+      content: " ";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 100%;
+      background-color: $grayscale-color-200;
+      transition: all .2s;
+    }
+  }
+
+  &_type-material {
+    &.switch {
+      height: 16px;
+
+      .switch__handle {
+        top: -4px;
+        left: -2px;
+        height: 22px;
+        width: 22px;
+      }
+
+      &:not(.switch_disabled):hover .switch__handle:before {
+        background-color: $grayscale-color-400;
+      }
+    }
+
+    &.switch_checked {
+      background-color: $primary-color-0-opacity-5;
+
+      .switch__handle {
+        left: calc(100% - 18px);
+
+        &:before {
+          background-color: $primary-color-0;
+        }
+      }
+
+      &:not(.switch_disabled):hover {
+        background-color: $primary-color-100-opacity-5;
+
+        .switch__handle:before {
+          background-color: $primary-color-100;
+        }
+      }
+    }
+
+    &.switch_disabled {
+      cursor: not-allowed;
+      background-color: $grayscale-color-200;
+
+      .switch__handle:before {
+        background-color: $grayscale-color-100;
+      }
+    }
+  }
+
+  &_type-fluent {
+    &.switch {
+      height: 20px;
+
+      .switch__handle {
+        top: 4px;
+        left: 4px;
+        height: 10px;
+        width: 10px;
+
+        &:before {
+          background-color: $grayscale-color-600;
+        }
+      }
+    }
+
+    &.switch_disabled {
+      cursor: not-allowed;
+
+      .switch__handle:before {
+        background-color: $grayscale-color-100;
+      }
+    }
+
+    &.switch_checked {
+      .switch__handle {
+        left: calc(100% - 14px);
+
+        &:before {
+          background-color: $white-color-0;
+        }
+      }
+
+      &.switch_disabled .switch__handle:before {
+        background-color: $grayscale-color-100;
+      }
+    }
+  }
+
+  &_type-square {
+    &.switch {
+      border-radius: 4px;
+
+      .switch__handle {
+        height: 18px;
+        width: 18px;
+
+        &:before {
+          border-radius: 2px;
+        }
+      }
+    }
+  }
+}
