@@ -1,31 +1,31 @@
 import React, { useState, useRef, useEffect } from "react";
-import classNames from "classnames";
+
+//components
+import NoResults from "../../components/NoResults";
 
 //elements
-import Checkbox from "../Checkbox/Checkbox";
-import Tag from "../Tag";
+import SelectOption from "./SelectOption";
+
+//helpers
+import { classNames } from "../../helpers/classNames";
 
 //types
-import { SelectProps } from "../../types/ElementsProps";
+import { SelectBaseProps, SelectOptionProps } from "../../types/ElementsProps";
 
 //assets
 import ArrowIcon from "../../iconComponents/ArrowIcon";
 import LightningIcon from "../../iconComponents/LightningIcon";
 
 //styles
-import "../../assets/scss/elements/Select.scss";
-
-const options = [
-  { value: "1", label: "1" },
-  { value: "2", label: "2" },
-];
+import styles from "../../assets/scss/elements/Select.module.scss";
 
 
-function SelectDefault(): JSX.Element {
+function SelectDefault(props: SelectBaseProps): JSX.Element {
+  const { placeholder, disabled, options, onSelect, className, onOpen, onClose, onSearch, showSearch, style, searchFunc } = props;
+
   const [open, setOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<string>("");
+  const [selectedValue, setSelectedValue] = useState<SelectOptionProps>({});
   const [searchValue, setSearchValue] = useState<string>("");
-  const [filteredData, setFilteredData] = useState<Array<any>>(options);
 
   const selectContainer = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -35,6 +35,7 @@ function SelectDefault(): JSX.Element {
     const handleClickOutside = (event: Event) => {
       if (open && selectContainer.current && !selectContainer.current.contains(event.target as Node)) {
         setOpen(false);
+        onClose();
         setSearchValue("");
       }
     };
@@ -49,59 +50,70 @@ function SelectDefault(): JSX.Element {
   }, [open]);
 
   const selectClassNames = classNames(
-    "select",
+    className,
+    styles.select,
     {
-      "select_open": open,
+      [styles.select_open]: open,
+      [styles["select_isables"]]: disabled,
     }
   );
 
-  const handleSelectOption = (value: string) => {
+  const handleSelectOption = value => {
+    setSearchValue("");
     setSelectedValue(value);
+    onSelect && onSelect(value);
   };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.currentTarget.value);
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearchValue(e.currentTarget.value);
 
-    const filteredOptions = options.filter(
-      item => item.label.toLowerCase().includes(e.currentTarget.value.toLowerCase())
-    );
+  const filteredOptions = options.filter(
+    item => item.value && `${item.value}`.toLowerCase().includes(searchValue.toLowerCase())
+  );
 
-    setFilteredData(filteredOptions);
+  const toggleSelecOptionsList = () => {
+    setOpen(!open);
+    if (!open && onOpen) onOpen();
+    if (open && onClose) {
+      onClose();
+      setSearchValue("");
+    }
   };
 
 
   return (
-    <div className="select__wrapper" onClick={() => setOpen(!open)} ref={selectContainer}>
-      <div className={selectClassNames}>
-        <span className="select__icon">
+    <div className={styles["select__wrapper"]} onClick={toggleSelecOptionsList} ref={selectContainer}>
+      <div className={selectClassNames} style={style}>
+        <span className={styles["select__icon"]}>
           <LightningIcon/>
         </span>
-        <div className="select__selector">
-          <span className="select__selection-search">
+        <div className={styles["select__selector"]}>
+          <span className={styles["select__selection-search"]}>
             <input
               ref={inputRef}
               value={searchValue}
               onChange={handleSearch}
-              className="select__selected-item"
+              className={styles["select__selected-item"]}
             />
           </span>
           {
             !searchValue
               ? selectedValue
-                ? <span className="select__selection-item">{ selectedValue }</span>
-                : <span className="select__selection-placeholder">Test</span>
+                ? <span className={styles["select__selection-item"]}>{ selectedValue.label }</span>
+                : <span className={styles["select__selection-placeholder"]}>{ placeholder }</span>
               : null
           }
         </div>
-        <span className="select__icon-arrow">
+        <span className={styles["select__icon-arrow"]}>
           <ArrowIcon direction={open ? "bottom" : "top"}/>
         </span>
       </div>
-      <div className={`select__options ${open ? "select__options_open" : ""}`}>
+      <div className={`${styles["select__options"]} ${open ? styles["select__options_open"]: ""}`}>
         {
-          filteredData.map(item => (
-            <div key={item.value} className="select__option-item" onClick={() => handleSelectOption(item.value)}>{ item.label }</div>
+          filteredOptions.length
+          ? filteredOptions.map(({value, label}, index) => (
+            <SelectOption key={index} value={value} label={label} handleSelectOption={handleSelectOption}/>
           ))
+          : <NoResults/>
         }
       </div>
     </div>

@@ -8,7 +8,7 @@ import TagSelect from "./TagSelect";
 import { SelectProps } from "../../types/ElementsProps";
 
 
-function Select({ mode = "normal" }: SelectProps): JSX.Element {
+function Select({ mode = "normal", ...rest }: SelectProps): JSX.Element {
     
 
   switch (mode) {
@@ -16,7 +16,7 @@ function Select({ mode = "normal" }: SelectProps): JSX.Element {
       return <TagSelect/>;
 
     default:
-      return <SelectDefault/>;
+      return <SelectDefault {...rest}/>;
   }
 }
 

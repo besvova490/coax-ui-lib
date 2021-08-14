@@ -1,0 +1,17 @@
+@import "lib/assets/scss/variables/colors";
+
+
+.no-results {
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 10px;
+  font-family: WorkSans;
+  background-color: $gray-shade-01-light;
+  color: $gray-shade-05-light;
+  font-size: 14px;
+  line-height: 24px;
+}

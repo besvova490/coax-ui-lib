@@ -18,7 +18,11 @@ export default {
 const Template: Story<SelectProps> = args => <Select {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  options: [{
+    value: 1, label: "Test"
+  }]
+};
 Primary.parameters = {
   design: {
     type: "figma",
