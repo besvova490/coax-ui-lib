@@ -1,6 +1,7 @@
 @import "lib/assets/scss/variables/colors";
 
 .radio {
+  font-family: WorkSans;
   position: relative;
   display: inline-flex;
 
@@ -111,7 +112,6 @@
   }
 
   &__label {
-    font-family: Paragraph;
     margin-left: 10px;
   }
 }

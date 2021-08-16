@@ -113,9 +113,15 @@ export interface InputProps {
 };
 
 export interface SelectOptionProps {
+  disabled?: boolean;
   value?: string | number;
   label?: string | number | React.ReactNode;
   handleSelectOption?: ({ value, label }: { value?: string | number, label?: string | number | React.ReactNode }) => void;
+};
+
+export interface SelectTagOptionProps extends SelectOptionProps {
+  handleSelectTagOption?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>, { value, label }: { value?: string | number, label?: string | number | React.ReactNode }) => void;
+  checked?: boolean;
 };
 
 export interface SelectBaseProps {
@@ -129,7 +135,7 @@ export interface SelectBaseProps {
   onSearch?: (searchWords: string) => void;
   showSearch?: boolean,
   style?: Record<string, unknown>,
-  searchFunc?: (searchWords: string, options: Array<SelectOptionProps>) => void;
+  searchFunc?: (searchWords: string, options: Array<SelectOptionProps>) => Array<SelectOptionProps>;
 }
 
 export interface SelectProps extends SelectBaseProps {

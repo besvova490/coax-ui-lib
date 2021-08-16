@@ -13,7 +13,7 @@ function Select({ mode = "normal", ...rest }: SelectProps): JSX.Element {
 
   switch (mode) {
     case "tag":
-      return <TagSelect/>;
+      return <TagSelect {...rest}/>;
 
     default:
       return <SelectDefault {...rest}/>;

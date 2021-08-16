@@ -21,7 +21,7 @@ import styles from "../../assets/scss/elements/Select.module.scss";
 
 
 function SelectDefault(props: SelectBaseProps): JSX.Element {
-  const { placeholder, disabled, options, onSelect, className, onOpen, onClose, onSearch, showSearch, style, searchFunc } = props;
+  const { placeholder, disabled, options = [], onSelect, className, onOpen, onClose, onSearch, showSearch, style, searchFunc } = props;
 
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<SelectOptionProps>({});
@@ -51,9 +51,9 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
 
   const selectClassNames = classNames(
     className,
-    styles.select,
+    styles["select"],
     {
-      [styles.select_open]: open,
+      [styles["select_open"]]: open,
       [styles["select_isables"]]: disabled,
     }
   );
@@ -64,16 +64,22 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
     onSelect && onSelect(value);
   };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => setSearchValue(e.currentTarget.value);
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.currentTarget.value);
+    onSearch && onSearch(e.target.value);
+  }
 
-  const filteredOptions = options.filter(
-    item => item.value && `${item.value}`.toLowerCase().includes(searchValue.toLowerCase())
+  const filteredOptions = searchFunc
+  ? searchFunc(searchValue, options)
+  : options.filter(
+    item => `${item.label}`.toLowerCase().includes(searchValue.toLowerCase())
   );
 
   const toggleSelecOptionsList = () => {
     setOpen(!open);
     if (!open && onOpen) onOpen();
     if (open && onClose) {
+      inputRef.current.blur();
       onClose();
       setSearchValue("");
     }
@@ -87,6 +93,7 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
           <LightningIcon/>
         </span>
         <div className={styles["select__selector"]}>
+          {showSearch && (
           <span className={styles["select__selection-search"]}>
             <input
               ref={inputRef}
@@ -95,9 +102,10 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
               className={styles["select__selected-item"]}
             />
           </span>
+          )}
           {
             !searchValue
-              ? selectedValue
+              ? !!selectedValue.label
                 ? <span className={styles["select__selection-item"]}>{ selectedValue.label }</span>
                 : <span className={styles["select__selection-placeholder"]}>{ placeholder }</span>
               : null
@@ -110,8 +118,8 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
       <div className={`${styles["select__options"]} ${open ? styles["select__options_open"]: ""}`}>
         {
           filteredOptions.length
-          ? filteredOptions.map(({value, label}, index) => (
-            <SelectOption key={index} value={value} label={label} handleSelectOption={handleSelectOption}/>
+          ? filteredOptions.map(({value, label, disabled: sleectOptionDisabled}, index) => (
+            <SelectOption key={index} value={value} label={label} disabled={sleectOptionDisabled} handleSelectOption={handleSelectOption}/>
           ))
           : <NoResults/>
         }

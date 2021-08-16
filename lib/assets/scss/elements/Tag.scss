@@ -1,6 +1,7 @@
 @import "lib/assets/scss/variables/colors";
 
 .tag {
+  font-family: WorkSans;
   height: 24px;
   display: inline-flex;
   align-items: center;
@@ -9,7 +10,6 @@
   font-size: 14px;
   font-weight: 500;
   border: 1px solid transparent;
-  font-family: Paragraph;
   background-color: $primary-color-0;
   transition: .2s all;
   border-radius: 4px;

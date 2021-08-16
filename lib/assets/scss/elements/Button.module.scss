@@ -2,6 +2,7 @@
 
 
 .btn {
+  font-family: WorkSans;
   padding: 7px 16px;
   height: 32px;
   transition: all 0.2s;
@@ -125,7 +126,6 @@
   }
 
   &__label {
-    font-family: Paragraph;
     font-weight: 500;
   }
 }

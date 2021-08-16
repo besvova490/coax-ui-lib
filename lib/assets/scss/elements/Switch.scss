@@ -1,6 +1,7 @@
 @import "lib/assets/scss/variables/colors";
 
 .switch {
+  font-family: WorkSans;
   height: 24px;
   width: 40px;
   border: 1px solid $grayscale-color-200;
@@ -15,7 +16,6 @@
   }
 
   &__label {
-    font-family: Paragraph;
     margin-left: 8px;
   }
 

@@ -1,7 +1,7 @@
 @import "lib/assets/scss/variables/colors";
 
 .select {
-  font-family: Paragraph;
+  font-family: WorkSans;
   width: 200px;
   height: 32px;
   border-radius: 4px;
@@ -102,12 +102,18 @@
     padding: 5px 12px;
     font-size: 14px;
     line-height: 22px;
-    font-family: Paragraph;
+    font-family: WorkSans;
     cursor: pointer;
     transition: .150s background-color;
 
-    &:hover {
+    &:not(&_disabled):hover {
       background-color: $grayscale-color-100;
+    }
+
+    &_disabled {
+      cursor: not-allowed;
+      color: $gray-shade-04-light;
+      background-color: transparent;
     }
   }
 
@@ -160,7 +166,6 @@
 
       &__selection-placeholder {
         padding-left: 4px;
-        
       }
     }
 

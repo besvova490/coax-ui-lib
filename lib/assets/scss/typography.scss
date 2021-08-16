@@ -1,0 +1,168 @@
+.typography-base {
+  font-family: WorkSans;
+  color: $black-color-0;
+}
+
+.heading-regular-hero {
+  @extend .typography-base;
+  font-size: 96px;
+  line-height: 116px;
+}
+
+.heading-regular-h1 {
+  @extend .typography-base;
+  font-size: 68px;
+  line-height: 76px;
+}
+
+.heading-regular-h2 {
+  @extend .typography-base;
+  font-size: 56px;
+  line-height: 64px;
+}
+
+.heading-regular-h3 {
+  @extend .typography-base;
+  font-size: 46px;
+  line-height: 54px;
+}
+
+.heading-regular-h4 {
+  @extend .typography-base;
+  font-size: 38px;
+  line-height: 46px;
+}
+
+.heading-regular-h5 {
+  @extend .typography-base;
+  font-size: 30px;
+  line-height: 38px;
+}
+
+.heading-regular-h6 {
+  @extend .typography-base;
+  font-size: 24px;
+  line-height: 32px;
+}
+
+
+//paragraph
+.paragraph-regular-xxl {
+  @extend .typography-base;
+  font-size: 22px;
+  line-height: 36px;
+}
+
+.paragraph-regular-xl {
+  @extend .typography-base;
+  font-size: 20px;
+  line-height: 34px;
+}
+
+.paragraph-regular-l {
+  @extend .typography-base;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.paragraph-regular-m {
+  @extend .typography-base;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.paragraph-regular-s {
+  @extend .typography-base;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.paragraph-regular-xs {
+  @extend .typography-base;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.paragraph-semibold-xxl {
+  @extend .typography-base;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 36px;
+}
+
+.paragraph-semibold-xl {
+  @extend .typography-base;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 34px;
+}
+
+.paragraph-semibold-l {
+  @extend .typography-base;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.paragraph-semibold-m {
+  @extend .typography-base;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.paragraph-semibold-s {
+  @extend .typography-base;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.paragraph-semibold-xs {
+  @extend .typography-base;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.paragraph-bold-xxl {
+  @extend .typography-base;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 36px;
+}
+
+.paragraph-bold-xl {
+  @extend .typography-base;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 34px;
+}
+
+.paragraph-bold-l {
+  @extend .typography-base;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 30px;
+}
+
+.paragraph-bold-m {
+  @extend .typography-base;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.paragraph-bold-s {
+  @extend .typography-base;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.paragraph-bold-xs {
+  @extend .typography-base;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 20px;
+}
