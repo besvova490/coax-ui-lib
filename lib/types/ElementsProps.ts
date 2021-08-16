@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export type PreloaderProps = {
+export interface PreloaderProps {
   color?: string;
   width?: number;
   height?: number;
@@ -9,13 +9,13 @@ export type PreloaderProps = {
 };
 
 
-type CheckBoxOnClickProps = {
-  checked: boolean,
-  value: string | number | undefined,
-  label: string | React.ReactNode | undefined
+interface CheckBoxOnClickProps {
+  checked: boolean;
+  value: string | number | undefined;
+  label: string | React.ReactNode | undefined;
 };
 
-export type CheckBoxProps = {
+export interface CheckBoxProps {
   checked?: boolean;
   label?: string | React.ReactNode;
   disabled?: boolean;
@@ -55,7 +55,7 @@ export interface ButtonProps extends IconButtonProps {
   loading?: boolean;
 }
 
-export type TextAreaProps = {
+export interface TextAreaProps {
   className?: string;
   placeholder?: string;
   defaultValue?: string;
@@ -67,21 +67,21 @@ export type TextAreaProps = {
   error?: string | React.ReactNode;
 };
 
-export type SwitchProps = {
+export interface SwitchProps {
   label?: string;
   disabled?: boolean;
   type?: "normal" | "square" | "material" | "fluent";
   onChange?: (value: boolean) => void,
 };
 
-export type SearchProps = {
+export interface SearchProps {
   className?: string;
   allowClear?: boolean;
   placeholder?: string;
   searchIconPosition?: "left" | "right";
 };
 
-export type InputNumberProps = {
+export interface InputNumberProps {
   className?: string;
   defaultValue?: number;
   value?: number;
@@ -93,30 +93,58 @@ export type InputNumberProps = {
   error?: string | React.ReactNode;
 };
 
-export type InputProps = {
-  value?: string,
-  type?: string,
-  className?: string,
-  placeholder?: string,
-  defaultValue?: string,
-  bordered?: boolean,
-  disabled?: boolean,
-  borderRadius?: boolean,
-  success?: boolean,
-  maxLength?: number,
-  showMaxLength?: boolean,
-  onChange?: (value: string) => void,
-  label?: string | React.ReactNode,
-  error?:string | React.ReactNode,
-  prefix?: string | React.ReactNode,
-  suffix?: string | React.ReactNode,
+export interface InputProps {
+  value?: string;
+  type?: string;
+  className?: string;
+  placeholder?: string;
+  defaultValue?: string;
+  bordered?: boolean;
+  disabled?: boolean;
+  borderRadius?: boolean;
+  success?: boolean;
+  maxLength?: number;
+  showMaxLength?: boolean;
+  onChange?: (value: string) => void;
+  label?: string | React.ReactNode;
+  error?:string | React.ReactNode;
+  prefix?: string | React.ReactNode;
+  suffix?: string | React.ReactNode;
 };
 
-export type SelectProps = {
-  mode?: "normal" | "tag"
+export interface SelectOptionProps {
+  disabled?: boolean;
+  value?: string | number;
+  label?: string | number | React.ReactNode;
+  handleSelectOption?: ({ value, label }: { value?: string | number, label?: string | number | React.ReactNode }) => void;
 };
 
-export type TagProps = {
+export interface SelectTagOptionProps extends SelectOptionProps {
+  handleSelectTagOption?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>, { value, label }: { value?: string | number, label?: string | number | React.ReactNode }) => void;
+  checked?: boolean;
+};
+
+export interface SelectBaseProps {
+  placeholder?: string;
+  disabled?: boolean;
+  options?: Array<SelectOptionProps>;
+  onSelect?: (value: SelectOptionProps) => void;
+  className?: string;
+  onOpen?: () => void;
+  onClose?: () => void;
+  onSearch?: (searchWords: string) => void;
+  showSearch?: boolean,
+  style?: Record<string, unknown>,
+  searchFunc?: (searchWords: string, options: Array<SelectOptionProps>) => Array<SelectOptionProps>;
+}
+
+export interface SelectProps extends SelectBaseProps {
+  mode?: "normal" | "tag";
+  [key: string]: any;
+};
+
+
+export interface TagProps {
   label?: string;
   fill?: boolean;
   visible?: boolean;
@@ -124,4 +152,10 @@ export type TagProps = {
   closable?: boolean;
   className?: string;
   onClose?: () => void;
+};
+
+
+export interface NoResultsProps {
+  searchWords?: string;
+  className?: string;
 };

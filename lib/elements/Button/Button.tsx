@@ -1,7 +1,7 @@
 import React from "react";
 
 //components
-import { Preloader } from "../../components/Preloader";
+import Preloader from "../../components/Preloader";
 
 //helpers
 import { classNames } from "../../helpers/classNames";

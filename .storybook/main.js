@@ -5,6 +5,7 @@ module.exports = {
   addons: [
     "storybook-addon-designs",
     "@storybook/addon-links",
+    "@storybook/addon-actions",
     "@storybook/addon-essentials",
   ],
   webpackFinal: async (config) => {
@@ -22,7 +23,11 @@ module.exports = {
       include: path.resolve(__dirname, "../")
     });
 
-    config.module.rules.push({ test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' });
+    config.module.rules.push({
+      test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+      loaders: ["file-loader"],
+      include: path.resolve(__dirname, '../'),
+    });
 
     config.module.rules.push({
       test: /\.(ts|tsx)$/,

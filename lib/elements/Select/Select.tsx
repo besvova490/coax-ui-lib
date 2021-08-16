@@ -8,15 +8,15 @@ import TagSelect from "./TagSelect";
 import { SelectProps } from "../../types/ElementsProps";
 
 
-function Select({ mode = "normal" }: SelectProps): JSX.Element {
+function Select({ mode = "normal", ...rest }: SelectProps): JSX.Element {
     
 
   switch (mode) {
     case "tag":
-      return <TagSelect/>;
+      return <TagSelect {...rest}/>;
 
     default:
-      return <SelectDefault/>;
+      return <SelectDefault {...rest}/>;
   }
 }
 

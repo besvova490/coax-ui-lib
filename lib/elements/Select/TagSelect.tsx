@@ -1,38 +1,34 @@
 import React, { useState, useRef, useEffect } from "react";
 import classNames from "classnames";
 
+//components
+import NoResults from "../../components/NoResults";
+import SelectTagOption from "./SelectTagOption";
+
 //elements
-import Checkbox from "../Checkbox/Checkbox";
-import Tag from "../Tag";
+import { Tag } from "../Tag";
 
 //types
-import { SelectProps } from "../../types/ElementsProps";
+import { SelectBaseProps } from "../../types/ElementsProps";
 
 //assets
 import ArrowIcon from "../../iconComponents/ArrowIcon";
 
 //styles
-import "../../assets/scss/elements/Select.scss";
-
-const options = [
-  { value: "1", label: "1" },
-  { value: "2", label: "2" },
-  { value: "3", label: "3" },
-  { value: "4", label: "4" },
-  { value: "5", label: "5" },
-];//todo improve
+import styles from "../../assets/scss/elements/Select.module.scss";
 
 
-const inList = (checkList: Array<{[key: string]: any}>, checkObj: {[key: string]: any}): boolean => {
-  return JSON.stringify(checkList).includes(JSON.stringify(checkObj));
+const inList = (checkList: Array<{[key: string]: any}>, value: string | number): boolean => {
+  return checkList.some(item => item.value === value);
 };
 
 
-function Select(): JSX.Element {
+function Select(props: SelectBaseProps): JSX.Element {
+  const { placeholder, disabled, options = [], onSelect, className, onOpen, onClose, onSearch, showSearch, style, searchFunc } = props;
+
   const [open, setOpen] = useState(false);
   const [selectedValues, setSelectedValues] = useState<Array<{[key: string]: any}>>([]);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [filteredData, setFilteredData] = useState<Array<any>>(options);
 
   const selectContainer = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -42,6 +38,8 @@ function Select(): JSX.Element {
     const handleClickOutside = (event: Event) => {
       if (open && selectContainer.current && !selectContainer.current.contains(event.target as Node)) {
         setOpen(false);
+        inputRef.current && inputRef.current.blur();
+        onClose();
         setSearchValue("");
       }
     };
@@ -56,34 +54,33 @@ function Select(): JSX.Element {
   }, [open]);
 
   const selectClassNames = classNames(
-    "select",
-    "select_tag",
+    styles["select"],
+    styles["select_tag"],
+    className,
     {
-      "select_open": open,
+      [styles["select_open"]]: open,
+      [styles["select_isables"]]: disabled,
     }
   );
 
-  const handleSelectOption = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, value: any) => {
+  const handleSelectOption = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, selectItem) => {
     e.stopPropagation();
 
+    const { value } = selectItem;
+
     if (inList(selectedValues, value)) {
-      setSelectedValues(selectedValues.filter(item => item.label !== value.label));
+      setSelectedValues(selectedValues.filter(item => item.value !== value));
     } else {
-      setSelectedValues([...selectedValues, value]);
+      setSelectedValues([...selectedValues, selectItem]);
     }
 
     setSearchValue("");
-    setFilteredData(options);
+    onSelect && onSelect(value);
   };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value);
-
-    const filteredOptions = options.filter(
-      item => item.label.toLowerCase().includes(e.currentTarget.value.toLowerCase())
-    );
-
-    setFilteredData(filteredOptions);
+    onSearch && onSearch(e.target.value);
   };
 
   const handleTagRemove = (value: any) => {
@@ -91,47 +88,70 @@ function Select(): JSX.Element {
   };
 
 
+  const filteredOptions = searchFunc
+  ? searchFunc(searchValue, options)
+  : options.filter(
+    item => `${item.label}`.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
+  const toggleSelecOptionsList = () => {
+    setOpen(!open);
+    if (!open && onOpen) onOpen();
+    if (open && onClose) {
+      inputRef.current && inputRef.current.blur();
+      onClose();
+      setSearchValue("");
+    }
+  }
+
+
   return (
-    <div className="select__wrapper" onClick={() => setOpen(!open)} ref={selectContainer}>
-      <div className={selectClassNames}>
-        <div className="select__selector">
+    <div className={styles["select__wrapper"]} onClick={toggleSelecOptionsList} ref={selectContainer}>
+      <div className={selectClassNames} style={style}>
+        <div className={styles["select__selector"]}>
           {
-            selectedValues.length
-              ? <div className="select__selection-items">
+            selectedValues.length || (open && showSearch)
+              ? <div className={styles["select__selection-items"]}>
                 {
                   selectedValues.map((item, index) => (
-                    <div className="selection-item" key={index}>
-                      <Tag key={item.label} label={item.label} className={"select-tag_tag-item"} onClose={() => handleTagRemove(item)} visible={true}/>
+                    <div className={styles["selection-item"]} key={index}>
+                      <Tag key={item.label} label={item.label} className={styles["select-tag_tag-item"]} onClose={() => handleTagRemove(item)} visible={true}/>
                     </div>
                   ))
                 }
-                <div className="select__selection-search" style={{ width: `${4 + (searchValue.length * 7)}px` }}>
-                  <input
-                    ref={inputRef}
-                    value={searchValue}
-                    onChange={handleSearch}
-                    className="select__selected-item"
-                  />
-                </div>
+                {
+                  showSearch && (
+                  <div className={styles["select__selection-search"]} style={{ width: `${4 + (searchValue.length * 7)}px` }}>
+                    <input
+                      ref={inputRef}
+                      value={searchValue}
+                      onChange={handleSearch}
+                      className={styles["select__selected-item"]}
+                    />
+                  </div>
+                  )
+                }
               </div>
-              : <span className="select__selection-placeholder">Test</span>
+              : <span className={styles["select__selection-placeholder"]}>{ placeholder }</span>
           }
         </div>
-        <span className="select__icon-arrow">
+        <span className={styles["select__icon-arrow"]}>
           <ArrowIcon direction={open ? "bottom" : "top"}/>
         </span>
       </div>
-      <div className={`select__options ${open ? "select__options_open" : ""}`}>
+      <div className={`${styles["select__options"]} ${open ? styles["select__options_open"] : ""}`}>
         {
-          filteredData.map(item => (
-            <div
-              key={item.value}
-              className="select__option-item"
-              onClick={e => handleSelectOption(e, item)}
-            >
-              <Checkbox label={item.label} checked={inList(selectedValues, item)}/>
-            </div>
+          filteredOptions.length
+          ? filteredOptions.map(({ value, label, disabled: sleectOptionDisabled }) => (
+            <SelectTagOption
+              key={value}
+              value={value}
+              handleSelectTagOption={handleSelectOption}
+              label={label}
+              disabled={sleectOptionDisabled}
+              checked={inList(selectedValues, value)}/>
           ))
+          : <NoResults/>
         }
       </div>
     </div>

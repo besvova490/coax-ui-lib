@@ -1,6 +1,7 @@
 @import "lib/assets/scss/variables/colors";
 
 .checkbox {
+  font-family: WorkSans;
   position: relative;
   display: inline-flex;
 
@@ -88,7 +89,6 @@
   }
 
   &__label {
-    font-family: Paragraph;
     margin-left: 10px;
   }
 

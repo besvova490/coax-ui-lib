@@ -1,13 +1,17 @@
 @import "lib/assets/scss/variables/colors";
 
 .input {
-  padding: 5px 2px 5px 12px;
+  font-family: WorkSans;
+  padding: 7px 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 14px;
-  line-height: 22px;
+  line-height: 18px;
   font-weight: 400;
   text-align: left;
   border: 1px solid;
-  border-color: $grayscale-color-200;
+  border-color: $gray-shade-03-light;
   height: 32px;
   width: 200px;
   color: $black-color-0;
@@ -39,7 +43,6 @@
     display: inline-flex;
     flex-direction: column;
     justify-content: flex-start;
-    font-family: Paragraph;
     position: relative;
   }
 
@@ -108,7 +111,7 @@
   }
 
   &::placeholder {
-    color: $grayscale-color-300;
+    color: $gray-shade-05-light;
   }
 
   &_border-radius {
@@ -165,11 +168,11 @@
     &::after {
       content: " ";
       position: absolute;
-      width: 16px;
-      height: 16px;
       bottom: 4px;
       right: 4px;
-      background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.4393 8.56066C11.7206 8.84196 12.1022 9 12.5 9C12.8978 9 13.2794 8.84196 13.5607 8.56066C13.842 8.27936 14 7.89782 14 7.5C14 7.10218 13.842 6.72064 13.5607 6.43934C13.2794 6.15804 12.8978 6 12.5 6C12.1022 6 11.7206 6.15804 11.4393 6.43934C11.158 6.72064 11 7.10218 11 7.5C11 7.89782 11.158 8.27936 11.4393 8.56066Z' fill='%23B3B5BC'/%3E%3Cpath d='M7.5 14C7.10218 14 6.72064 13.842 6.43934 13.5607C6.15804 13.2794 6 12.8978 6 12.5C6 12.1022 6.15804 11.7206 6.43934 11.4393C6.72064 11.158 7.10218 11 7.5 11C7.89782 11 8.27936 11.158 8.56066 11.4393C8.84196 11.7206 9 12.1022 9 12.5C9 12.8978 8.84196 13.2794 8.56066 13.5607C8.27936 13.842 7.89782 14 7.5 14Z' fill='%23B3B5BC'/%3E%3Cpath d='M12.5 14C12.1022 14 11.7206 13.842 11.4393 13.5607C11.158 13.2794 11 12.8978 11 12.5C11 12.1022 11.158 11.7206 11.4393 11.4393C11.7206 11.158 12.1022 11 12.5 11C12.8978 11 13.2794 11.158 13.5607 11.4393C13.842 11.7206 14 12.1022 14 12.5C14 12.8978 13.842 13.2794 13.5607 13.5607C13.2794 13.842 12.8978 14 12.5 14Z' fill='%23B3B5BC'/%3E%3C/svg%3E%0A");
+      border-left: 8px solid transparent;
+      border-top: 8px solid transparent;
+      border-right: 8px solid $shade-natural-01;
     }
   }
 }

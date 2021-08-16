@@ -1,9 +1,10 @@
 import React from "react";
 import { Story, Meta } from "@storybook/react";
 
-import { Preloader } from "../../lib/components/Preloader/Preloader";
+import { Preloader } from "../../lib/components";
 
 import { PreloaderProps } from "../../lib/types/ElementsProps";
+
 
 export default {
   title: "Elements/Preloader",

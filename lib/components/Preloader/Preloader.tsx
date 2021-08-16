@@ -18,4 +18,4 @@ function Preloader({ color = "#FFF", height = 4, width = 4, boxHeight }: Preload
 }
 
 
-export { Preloader };
+export default Preloader;
