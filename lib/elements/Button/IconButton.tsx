@@ -48,8 +48,6 @@ function IconButton(props: ButtonProps): JSX.Element {
     onClick && !disabled && onClick(e);
   };
 
-  console.log(icon);
-
 
   switch (true) {
     case !!href:

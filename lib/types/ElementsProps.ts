@@ -159,3 +159,17 @@ export interface NoResultsProps {
   searchWords?: string;
   className?: string;
 };
+
+
+export interface BaseCalendarProps {
+  allowClear?: boolean;
+  className?: string;
+  disabled?: boolean;
+  open?: boolean;
+  placeholder?: string;
+  style?: Record<string, unknown>;
+  onOpenChange?: (isOpen: boolean) => void;
+  format?: string;
+  onChange?: (date: string) => void;
+  onClear?: () => void;
+}
