@@ -9,7 +9,7 @@ import PasswordHidden from "../../iconComponents/PasswordHidden";
 import PasswordVisible from "../../iconComponents/PasswordVisible";
 
 //styles
-import "../../assets/scss/elements/Input.scss";
+import styles from "../../assets/scss/elements/Input.module.scss";
 
 
 function Input(props: InputProps) {
@@ -39,15 +39,15 @@ function Input(props: InputProps) {
   useEffect(() => setInputValue(value ? value : defaultValue), [value]);
 
   const classNamesList = classNames(
-    "input",
+    styles["input"],
     className,
     {
-      "input_no-border": !bordered,
-      "input_disabled": disabled,
-      "input_border-radius": borderRadius,
-      "input_success": success,
-      "input_error": error,
-      "input_password": type === "password"
+      [styles["input_no-border"]]: !bordered,
+      [styles["input_disabled"]]: disabled,
+      [styles["input_border-radius"]]: borderRadius,
+      [styles["input_success"]]: success,
+      [styles["input_error"]]: error,
+      [styles["input_password"]]: type === "password"
     }
   );
 
@@ -63,10 +63,10 @@ function Input(props: InputProps) {
   };
 
   return (
-    <span className={"input__wrapper"}>
-      { label && <span className={"input__label"}>{ label }</span> }
+    <span className={styles["input__wrapper"]}>
+      { label && <span className={styles["input__label"]}>{ label }</span> }
       <span className={classNamesList}>
-        {type !== "password" && prefix && <span className={"input__icon input__icon_prefix"}>{ prefix }</span>}
+        {type !== "password" && prefix && <span className={styles["input__icon input__icon_prefix"]}>{ prefix }</span>}
         <input
           type={showPassword ? "text" : type}
           placeholder={placeholder}
@@ -75,16 +75,16 @@ function Input(props: InputProps) {
           onChange={handleChange}
           {...rest}
         />
-        {type !== "password" && suffix && <span className={"input__icon input__icon_suffix"}>{ suffix }</span>}
+        {type !== "password" && suffix && <span className={styles["input__icon input__icon_suffix"]}>{ suffix }</span>}
         {type === "password" && <span
-          className={"input__show-password"}
+          className={styles["input__show-password"]}
           onClick={() => setShowPassword(!showPassword)}
         >{!showPassword ? <PasswordHidden fill={"#B3B5BC"}/> : <PasswordVisible fill={"#B3B5BC"}/>}
         </span>}
       </span>
-      <span className="input__sub-section">
-        <span className={"input__error"}>{ error }</span>
-        { showMaxLength && <span className="input__count-length">{inputValue.length}/{maxLength}</span> }
+      <span className={styles["input__sub-section"]}>
+        <span className={styles["input__error"]}>{ error }</span>
+        { showMaxLength && <span className={styles["input__count-length"]}>{inputValue.length}/{maxLength}</span> }
       </span>
     </span>
   );

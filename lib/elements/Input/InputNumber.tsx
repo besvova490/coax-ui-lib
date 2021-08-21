@@ -9,7 +9,7 @@ import DecIcon from "../../iconComponents/DecIcon";
 import IncIcon from "../../iconComponents/IncIcon";
 
 //styles
-import "../../assets/scss/elements/Input.scss";
+import styles from "../../assets/scss/elements/Input.module.scss";
 
 
 function InputNumber(props: InputNumberProps) {
@@ -36,20 +36,20 @@ function InputNumber(props: InputNumberProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const classNamesList = classNames(
-    "input",
-    "input__number",
+    styles["input"],
+    styles["input__number"],
     className,
     {
-      "input_no-border": !bordered,
-      "input_disabled": disabled,
-      "input_border-radius": borderRadius,
-      "input_success": success,
-      "input_error": error,
+      [styles["input_no-border"]]: !bordered,
+      [styles["input_disabled"]]: disabled,
+      [styles["input_border-radius"]]: borderRadius,
+      [styles["input_success"]]: success,
+      [styles["input_error"]]: error,
     }
   );
 
-  const handleFocus = () => inputRef.current && inputRef.current.classList.add("input_active");
-  const handleBlur = () => inputRef.current && inputRef.current.classList.remove("input_active");
+  const handleFocus = () => inputRef.current && inputRef.current.classList.add(styles["input_active"]);
+  const handleBlur = () => inputRef.current && inputRef.current.classList.remove(styles["input_active"]);
 
   const onInc = () => setNumberValue(numberValue + 1);
   const onDec = () => setNumberValue(numberValue - 1);
@@ -57,11 +57,11 @@ function InputNumber(props: InputNumberProps) {
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => setNumberValue(+e.currentTarget.value.replace(/[^0-9]/g, ""));
 
   return (
-    <span className={"input__wrapper"}>
-      { label && <span className={"input__label"}>{ label }</span> }
+    <span className={styles["input__wrapper"]}>
+      { label && <span className={styles["input__label"]}>{ label }</span> }
       <span className={classNamesList} ref={inputRef}>
         <span
-          className={"input__icon input__icon_prefix"}
+          className={styles["input__icon input__icon_prefix"]}
           onClick={onDec}
         >
           <DecIcon/>
@@ -75,13 +75,13 @@ function InputNumber(props: InputNumberProps) {
           {...rest}
         />
         <span
-          className={"input__icon input__icon_suffix"}
+          className={styles["input__icon input__icon_suffix"]}
           onClick={onInc}
         >
           <IncIcon/>
         </span>
       </span>
-      {error && <span className={"input__error"}>{ error }</span>}
+      {error && <span className={styles["input__error"]}>{ error }</span>}
     </span>
   );
 }

@@ -80,7 +80,7 @@ function DatePicker(props: BaseCalendarProps) {
   return (
     <div className={datePickerClasNames} onClick={handleOpen} ref={datePickerContainer}>
       <input
-        autocomplete={false}
+        autoComplete={"false"}
         placeholder={placeholder || "Choose a date"}
         className={styles["date-picker__input"]}
         disabled={disabled}

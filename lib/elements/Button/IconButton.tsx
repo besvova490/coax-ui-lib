@@ -67,4 +67,4 @@ function IconButton(props: ButtonProps): JSX.Element {
 }
 
 
-export { IconButton };
+export default IconButton;

@@ -10,7 +10,7 @@ import { TagProps } from "../../types/ElementsProps";
 import { classNames } from "../../helpers/classNames";
 
 //styles
-import "../../assets/scss/elements/Tag.scss";
+import styles from "../../assets/scss/elements/Tag.module.scss";
 
 
 function Tag(props: TagProps): JSX.Element | null {
@@ -21,11 +21,11 @@ function Tag(props: TagProps): JSX.Element | null {
   useEffect(() => setDisplay(visible), [visible]);
 
   const tagClassNames = classNames(
-    "tag",
+    styles["tag"],
     className,
     {
-      "tag_default": !fill,
-      "tag_disabled": disabled
+      [styles["tag_default"]]: !fill,
+      [styles["tag_disabled"]]: disabled
     }
   );
 
@@ -40,9 +40,9 @@ function Tag(props: TagProps): JSX.Element | null {
   return (
     <span className={tagClassNames}>
       { label }
-      { closable && <CloseIcon className={"tag__icon"} onClick={handleChange}/> }
+      { closable && <CloseIcon className={styles["tag__icon"]} onClick={handleChange}/> }
     </span>
   );
 }
 
-export { Tag };
+export default Tag;

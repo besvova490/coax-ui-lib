@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDatepicker, START_DATE } from "@datepicker-react/hooks";
 
 //context
@@ -12,9 +12,6 @@ import styles from "../../assets/scss/components/DatePicker.module.scss";
 
 
 function Calendar({ onSelect, value }) {
-  const [state, setState] = useState({
-    focusedInput: START_DATE
-  });
   const {
     firstDayOfWeek,
     activeMonths,
@@ -32,12 +29,9 @@ function Calendar({ onSelect, value }) {
   } = useDatepicker({
     startDate: value,
     endDate: value,
-    focusedInput: state.focusedInput,
+    focusedInput: START_DATE,
     numberOfMonths: 1,
     onDatesChange: (data) => {
-      setState({
-        ...state
-      });
       onSelect(data.startDate);
     }
   });

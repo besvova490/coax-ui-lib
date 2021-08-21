@@ -4,7 +4,7 @@ import { withDesign } from "storybook-addon-designs";
 
 import { TagProps } from "../../../lib/types/ElementsProps";
 
-import { Tag } from "../../../lib/elements/Tag/Tag";
+import { Tag } from "../../../lib/elements/Tag";
 
 
 export default {

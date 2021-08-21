@@ -68,6 +68,7 @@ export interface TextAreaProps {
 };
 
 export interface SwitchProps {
+  className?: string;
   label?: string;
   disabled?: boolean;
   type?: "normal" | "square" | "material" | "fluent";

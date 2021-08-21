@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { TextAreaProps } from "../../types/ElementsProps";
 
 //styles
-import "../../assets/scss/elements/Input.scss";
+import styles from "../../assets/scss/elements/Input.module.scss";
 
 
 function TextArea(props: TextAreaProps) {
@@ -23,20 +23,21 @@ function TextArea(props: TextAreaProps) {
   } = props;
 
   const classNamesList = classNames(
-    "input input__textarea",
+    styles["input"],
+    styles["input__textarea"],
     className,
     {
-      "input_no-border": !bordered,
-      "input_disabled": disabled,
-      "input_border-radius": borderRadius,
-      "input_success": success,
-      "input_error": error,
+      [styles["input_no-border"]]: !bordered,
+      [styles["input_disabled"]]: disabled,
+      [styles["input_border-radius"]]: borderRadius,
+      [styles["input_success"]]: success,
+      [styles["input_error"]]: error,
     }
   );
 
   return (
-    <span className={"input__wrapper textarea__wrapper"}>
-      { label && <span className={"input__label"}>{ label }</span> }
+    <span className={`${styles["input__wrapper"]}  ${styles["textarea__wrapper"]}`}>
+      { label && <span className={styles["input__label"]}>{ label }</span> }
       <textarea
         className={classNamesList}
         placeholder={placeholder}
@@ -44,7 +45,7 @@ function TextArea(props: TextAreaProps) {
         disabled={disabled}
         {...rest}
       />
-      {error && <span className={"input__error"}>{ error }</span>}
+      {error && <span className={styles["input__error"]}>{ error }</span>}
     </span>
   );
 }

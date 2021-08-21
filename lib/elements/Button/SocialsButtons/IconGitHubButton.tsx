@@ -1,7 +1,7 @@
 import React from "react";
 
 //elements
-import { IconButton } from "../IconButton";
+import IconButton from "../IconButton";
 
 //interfaces
 import { IconButtonProps } from "../../../types/ElementsProps";
@@ -24,4 +24,4 @@ function IconGitHubButton(props: IconButtonProps): JSX.Element {
 }
 
 
-export { IconGitHubButton };
+export default IconGitHubButton;

@@ -1,7 +1,7 @@
 import React from "react";
 
 //elements
-import { Button } from "../Button";
+import Button from "../Button";
 
 //interfaces
 import { SocialButtonProps } from "../../../types/ElementsProps";
@@ -25,4 +25,4 @@ function AppleButton(props: SocialButtonProps): JSX.Element {
 }
 
 
-export { AppleButton };
+export default AppleButton;
