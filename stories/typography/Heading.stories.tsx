@@ -2,19 +2,22 @@ import React from "react";
 import { withDesign } from "storybook-addon-designs";
 import { Story, Meta } from "@storybook/react";
 
+import { Title } from "../../lib/elements";
 
-export default { title: "Typography/Heading", decorators: [withDesign] } as Meta;
+import  { TitleProps } from "../../lib/types/TypographyProps";
+
+export default { title: "Typography/Heading", component: Title, decorators: [withDesign] } as Meta;
 
 
-const Template: Story = () => (
+const Template: Story<TitleProps> = () => (
   <div>
-    <h1 className={"heading-regular-hero"}>Heading/Regular Hero</h1> 
-    <h1 className={"heading-regular-h1"}>Heading/Regular Hero h1</h1> 
-    <h1 className={"heading-regular-h2"}>Heading/Regular Hero h2</h1> 
-    <h1 className={"heading-regular-h3"}>Heading/Regular Hero h3</h1> 
-    <h1 className={"heading-regular-h4"}>Heading/Regular Hero h4</h1> 
-    <h1 className={"heading-regular-h5"}>Heading/Regular Hero h5</h1> 
-    <h1 className={"heading-regular-h6"}>Heading/Regular Hero h6</h1> 
+		<Title>Heading/Regular Hero</Title>
+		<Title level={1}>Heading/Regular Hero h1</Title>
+		<Title level={2}>Heading/Regular Hero h2</Title>
+		<Title level={3}>Heading/Regular Hero h3</Title>
+		<Title level={4}>Heading/Regular Hero h4</Title>
+		<Title level={5}>Heading/Regular Hero h5</Title>
+		<Title level={6}>Heading/Regular Hero h6</Title>
   </div>
 );
 
@@ -23,6 +26,6 @@ Primary.args = {};
 Primary.parameters = {
   design: {
     type: "figma",
-    url: "https://www.figma.com/file/ebw0SMZGU9FjLGvKeECo3P/Construct?node-id=203%3A1190"
+    url: "https://www.figma.com/file/DRDFhFlRL1NKq9IREw3s5m/ReConstruct?node-id=17%3A139"
   }
 };

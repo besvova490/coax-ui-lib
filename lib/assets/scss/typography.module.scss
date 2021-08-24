@@ -1,3 +1,5 @@
+@import "./variables/colors.scss";
+
 .typography-base {
   font-family: WorkSans;
   color: $black-color-0;
@@ -83,86 +85,57 @@
   line-height: 20px;
 }
 
-.paragraph-semibold-xxl {
-  @extend .typography-base;
+.paragraph-semibold {
   font-weight: 600;
-  font-size: 22px;
-  line-height: 36px;
 }
 
-.paragraph-semibold-xl {
-  @extend .typography-base;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 34px;
-}
-
-.paragraph-semibold-l {
-  @extend .typography-base;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 30px;
-}
-
-.paragraph-semibold-m {
-  @extend .typography-base;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 28px;
-}
-
-.paragraph-semibold-s {
-  @extend .typography-base;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 24px;
-}
-
-.paragraph-semibold-xs {
-  @extend .typography-base;
-  font-weight: 600;
-  font-size: 12px;
-  line-height: 20px;
-}
-
-.paragraph-bold-xxl {
-  @extend .typography-base;
+.paragraph-bold {
   font-weight: 700;
-  font-size: 22px;
-  line-height: 36px;
 }
 
-.paragraph-bold-xl {
-  @extend .typography-base;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 34px;
-}
+.typography {
+	&_disabled {
+		@extend .typography-base;
 
-.paragraph-bold-l {
-  @extend .typography-base;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 30px;
-}
+		cursor: not-allowed;
+		color: $netural-02;
+	}
 
-.paragraph-bold-m {
-  @extend .typography-base;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 28px;
-}
+	&_danger {
+		color: $danger-4;
+	}
+	
+	&_primary {
+		color: $primary-4;
+	}
+	
+	&_success {
+		color: $success-4;
+	}
+	
+	&_warning {
+		color: $warning-5;
+	}
+	
+	&_info {
+		color: $info-5;
+	}
+	
+	&_secondary {
+		color: $netural-02;
+	}
 
-.paragraph-bold-s {
-  @extend .typography-base;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 24px;
-}
-
-.paragraph-bold-xs {
-  @extend .typography-base;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 20px;
+	&_italic {
+		font-style: italic;
+	}
+	
+	&_strong {
+		font-weight: 700;
+	}
+	
+	&_underline {
+		text-decoration: underline;
+    -webkit-text-decoration-skip: ink;
+    text-decoration-skip-ink: auto;
+	}
 }

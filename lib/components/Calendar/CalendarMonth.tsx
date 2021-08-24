@@ -13,7 +13,7 @@ const weekDays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Satur
 
 
 function CalendarMonth({ year, month, firstDayOfWeek, goToPreviousMonths, goToNextMonths }) {
-  const { days, weekdayLabels, monthLabel } = useMonth({
+  const { days, weekdayLabels, monthLabel }: { days: Array<number | {date: Date, dayLabel: string}>, weekdayLabels: Array<string>, monthLabel: string } = useMonth({
     year,
     month,
     firstDayOfWeek
@@ -23,7 +23,12 @@ function CalendarMonth({ year, month, firstDayOfWeek, goToPreviousMonths, goToNe
 
   const firstWeek = days.slice(0, 7);
   const firstDayIndex = firstWeek.findIndex(item => item);
-  const lastIndex = weekDays.findIndex(item => item === moment(days[days.length - 1].date).format("dddd"));
+  const lastIndex = weekDays.findIndex(item => {
+    const day = days[days.length - 1];
+    if (typeof day === "object") return item === moment(day.date).format("dddd");
+
+    return false;
+  });
   const prevMonthDays = [];
   const nexMonthDays = [];
 
@@ -37,12 +42,15 @@ function CalendarMonth({ year, month, firstDayOfWeek, goToPreviousMonths, goToNe
   }
 
   for (let i = 1; i < 7 - lastIndex; i++) {
-    const date = moment(days[days.length - 1].date).add(i, "days");
-    nexMonthDays.push({
-      date: date.toDate(),
-      dayLabel: date.format("DD"),
-      nextMonth: true,
-    });
+    const day = days[days.length - 1];
+    if (typeof day === "object") {
+      const date = moment(day.date).add(i, "days");
+      nexMonthDays.push({
+        date: date.toDate(),
+        dayLabel: date.format("DD"),
+        nextMonth: true,
+      });
+    }
   }
 
   const correctDays = [...prevMonthDays, ...days.slice(firstDayIndex,), ...nexMonthDays];
