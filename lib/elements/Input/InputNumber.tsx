@@ -54,7 +54,9 @@ function InputNumber(props: InputNumberProps) {
   const onInc = () => setNumberValue(numberValue + 1);
   const onDec = () => setNumberValue(numberValue - 1);
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => setNumberValue(+e.currentTarget.value.replace(/[^0-9]/g, ""));
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+    setNumberValue(+e.currentTarget.value.replace(/[^0-9]/g, ""));
+  };
 
   return (
     <span className={styles["input__wrapper"]}>

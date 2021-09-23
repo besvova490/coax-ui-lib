@@ -9,7 +9,11 @@
     "jsx": "react",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": "./lib/",
+    "paths": {
+      "@coax/select": ["elements/Select"],
+    }
   },
   "include": ["lib/"],
   "exclude": [

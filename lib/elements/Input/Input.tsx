@@ -28,7 +28,9 @@ function Input(props: InputProps) {
     onChange,
     bordered = true,
     borderRadius = true,
-    showMaxLength = false,
+    showMaxLength,
+    fullWidth,
+    size = "middle",
     defaultValue = "",
     ...rest
   } = props;
@@ -51,6 +53,14 @@ function Input(props: InputProps) {
     }
   );
 
+  const wrapperClassNames = classNames(
+    styles["input-wrapper"],
+    styles[`input-wrapper_size-${size}`],
+    {
+      [styles["input-wrapper_full-width"]]: fullWidth,
+    }
+  );
+
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
     if (!maxLength) {
       setInputValue(e.currentTarget.value);
@@ -63,7 +73,7 @@ function Input(props: InputProps) {
   };
 
   return (
-    <span className={styles["input__wrapper"]}>
+    <span className={wrapperClassNames}>
       { label && <span className={styles["input__label"]}>{ label }</span> }
       <span className={classNamesList}>
         {type !== "password" && prefix && <span className={styles["input__icon input__icon_prefix"]}>{ prefix }</span>}

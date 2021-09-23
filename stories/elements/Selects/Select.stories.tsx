@@ -3,7 +3,7 @@ import { withDesign } from "storybook-addon-designs";
 import { Story, Meta } from "@storybook/react";
 
 //element
-import Select from "../../../lib/elements/Select/Select";
+import Select from "../../../lib/elements/Select";
 
 //type
 import { SelectProps } from "../../../lib/types/ElementsProps";
@@ -15,7 +15,7 @@ export default {
   decorators: [withDesign],
 } as Meta;
 
-const Template: Story<SelectProps> = args => <Select {...args} />;
+const Template: Story<SelectProps> = args => <Select {...args}/>
 
 export const Primary = Template.bind({});
 Primary.args = {

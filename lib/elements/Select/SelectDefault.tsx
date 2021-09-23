@@ -21,7 +21,21 @@ import styles from "../../assets/scss/elements/Select.module.scss";
 
 
 function SelectDefault(props: SelectBaseProps): JSX.Element {
-  const { placeholder, disabled, options = [], onSelect, className, onOpen, onClose, onSearch, showSearch, style, searchFunc } = props;
+  const {
+    placeholder,
+    disabled,
+    options = [],
+    onSelect,
+    className,
+    onOpen,
+    onClose,
+    onSearch,
+    showSearch,
+    style,
+    searchFunc,
+    fullWidth,
+    size = "middle"
+  } = props;
 
   const [open, setOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState<SelectOptionProps>({});
@@ -58,6 +72,14 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
     }
   );
 
+  const selectWrapperClassNames = classNames(
+    styles["select-wrapper"],
+    styles[`select-wrapper_size-${size}`],
+    {
+      [styles["select-wrapper_full-width"]]: fullWidth,
+    }
+  );
+
   const handleSelectOption = value => {
     setSearchValue("");
     setSelectedValue(value);
@@ -79,7 +101,7 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
     setOpen(!open);
     if (!open && onOpen) onOpen();
     if (open && onClose) {
-      inputRef.current.blur();
+      inputRef.current && inputRef.current.blur();
       onClose();
       setSearchValue("");
     }
@@ -87,7 +109,7 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
 
 
   return (
-    <div className={styles["select__wrapper"]} onClick={toggleSelecOptionsList} ref={selectContainer}>
+    <div className={selectWrapperClassNames} onClick={toggleSelecOptionsList} ref={selectContainer}>
       <div className={selectClassNames} style={style}>
         <span className={styles["select__icon"]}>
           <LightningIcon/>
