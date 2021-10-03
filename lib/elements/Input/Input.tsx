@@ -76,7 +76,7 @@ function Input(props: InputProps) {
     <span className={wrapperClassNames}>
       { label && <span className={styles["input__label"]}>{ label }</span> }
       <span className={classNamesList}>
-        {type !== "password" && prefix && <span className={styles["input__icon input__icon_prefix"]}>{ prefix }</span>}
+        {type !== "password" && prefix && <span className={`${styles["input__icon"]} ${styles["input__icon_prefix"]}`}>{ prefix }</span>}
         <input
           type={showPassword ? "text" : type}
           placeholder={placeholder}
