@@ -18,3 +18,4 @@ export { default as PasswordVisible } from "./PasswordVisible";
 export { default as ResizeIcon } from "./ResizeIcon";
 export { default as SearchIcon } from "./SearchIcon";
 export { default as SquareIcon } from "./SquareIcon";
+export { default as StarIcon } from "./StarIcon";

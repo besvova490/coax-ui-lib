@@ -34,11 +34,13 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
     style,
     searchFunc,
     fullWidth,
-    size = "middle"
+    size = "middle",
+    prefixIcon,
+    value = {},
   } = props;
 
   const [open, setOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<SelectOptionProps>({});
+  const [selectedValue, setSelectedValue] = useState<SelectOptionProps>(value);
   const [searchValue, setSearchValue] = useState<string>("");
 
   const selectContainer = useRef<HTMLDivElement>(null);
@@ -63,12 +65,16 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
 
+  useEffect(() => {
+    setSelectedValue(value);
+  }, [value]);
+
   const selectClassNames = classNames(
     className,
     styles["select"],
     {
       [styles["select_open"]]: open,
-      [styles["select_isables"]]: disabled,
+      [styles["select_disabled"]]: disabled,
     }
   );
 
@@ -98,6 +104,8 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
   );
 
   const toggleSelecOptionsList = () => {
+    if (disabled) return;
+
     setOpen(!open);
     if (!open && onOpen) onOpen();
     if (open && onClose) {
@@ -107,13 +115,14 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
     }
   };
 
-
   return (
     <div className={selectWrapperClassNames} onClick={toggleSelecOptionsList} ref={selectContainer}>
       <div className={selectClassNames} style={style}>
-        <span className={styles["select__icon"]}>
-          <LightningIcon/>
-        </span>
+        {
+          prefixIcon && <span className={styles["select__icon"]}>
+              { prefixIcon }
+            </span>
+        }
         <div className={styles["select__selector"]}>
           {showSearch && (
           <span className={styles["select__selection-search"]}>
@@ -127,8 +136,8 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
           )}
           {
             !searchValue
-              ? !!selectedValue.label
-                ? <span className={styles["select__selection-item"]}>{ selectedValue.label }</span>
+              ? !!selectedValue && selectedValue.value
+                ? <span className={styles["select__selection-item"]}>{ selectedValue.label || selectedValue.value }</span>
                 : <span className={styles["select__selection-placeholder"]}>{ placeholder }</span>
               : null
           }
@@ -141,7 +150,7 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
         {
           filteredOptions.length
           ? filteredOptions.map(({value, label, disabled: sleectOptionDisabled}, index) => (
-            <SelectOption key={index} value={value} label={label} disabled={sleectOptionDisabled} handleSelectOption={handleSelectOption}/>
+            <SelectOption key={index} value={value} label={label || value} disabled={sleectOptionDisabled} handleSelectOption={handleSelectOption}/>
           ))
           : <NoResults/>
         }

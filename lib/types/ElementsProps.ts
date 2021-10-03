@@ -140,6 +140,9 @@ export interface SelectBaseProps {
   size?: "small" | "middle" | "large";
   fullWidth?: boolean;
   style?: Record<string, unknown>,
+  prefixIcon?: React.ReactNode;
+  value?: SelectOptionProps,
+  defaultValue?: SelectOptionProps,
   searchFunc?: (searchWords: string, options: Array<SelectOptionProps>) => Array<SelectOptionProps>;
 }
 
