@@ -18,7 +18,7 @@ function SelectTagOption ({ label, value, disabled, checked, handleSelectTagOpti
     className={`${styles["select__option-item"]} ${disabled ? styles["select__option-item_disabled"] : ""}`}
     onClick={e => !disabled && handleSelectTagOption(e, { value, label })}
   >
-    <Checkbox label={label} checked={checked} disabled={disabled}/>
+    <Checkbox label={`${label}`} checked={checked} disabled={disabled}/>
   </div>
   );
 }
