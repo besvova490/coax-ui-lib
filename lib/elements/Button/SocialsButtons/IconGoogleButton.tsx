@@ -1,7 +1,7 @@
 import React from "react";
 
 //elements
-import { IconButton } from "../IconButton";
+import IconButton from "../IconButton";
 
 //interfaces
 import { IconButtonProps } from "../../../types/ElementsProps";
@@ -25,4 +25,4 @@ function IconGoogleButton(props: IconButtonProps): JSX.Element {
 }
 
 
-export { IconGoogleButton };
+export default IconGoogleButton;

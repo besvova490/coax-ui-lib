@@ -2,7 +2,7 @@ import React from "react";
 import { withDesign } from "storybook-addon-designs";
 import { Story, Meta } from "@storybook/react";
 
-import { Checkbox } from "../../lib/elements/Checkbox/Checkbox";
+import { Checkbox } from "../../lib/elements/Checkbox";
 
 import { CheckBoxProps } from "../../lib/types/ElementsProps";
 

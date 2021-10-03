@@ -24,7 +24,21 @@ const inList = (checkList: Array<{[key: string]: any}>, value: string | number):
 
 
 function Select(props: SelectBaseProps): JSX.Element {
-  const { placeholder, disabled, options = [], onSelect, className, onOpen, onClose, onSearch, showSearch, style, searchFunc } = props;
+  const {
+    placeholder,
+    disabled,
+    options = [],
+    onSelect,
+    className,
+    onOpen,
+    onClose,
+    onSearch,
+    showSearch,
+    style,
+    searchFunc,
+    fullWidth,
+    size = "middle"
+  } = props;
 
   const [open, setOpen] = useState(false);
   const [selectedValues, setSelectedValues] = useState<Array<{[key: string]: any}>>([]);
@@ -60,6 +74,14 @@ function Select(props: SelectBaseProps): JSX.Element {
     {
       [styles["select_open"]]: open,
       [styles["select_isables"]]: disabled,
+    }
+  );
+
+  const selectWrapperClassNames = classNames(
+    styles["select-wrapper"],
+    styles[`select-wrapper_size-${size}`],
+    {
+      [styles["select-wrapper_full-width"]]: fullWidth,
     }
   );
 
@@ -106,7 +128,7 @@ function Select(props: SelectBaseProps): JSX.Element {
 
 
   return (
-    <div className={styles["select__wrapper"]} onClick={toggleSelecOptionsList} ref={selectContainer}>
+    <div className={selectWrapperClassNames} onClick={toggleSelecOptionsList} ref={selectContainer}>
       <div className={selectClassNames} style={style}>
         <div className={styles["select__selector"]}>
           {

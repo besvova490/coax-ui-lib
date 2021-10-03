@@ -2,32 +2,47 @@ import React from "react";
 import { withDesign } from "storybook-addon-designs";
 import { Story, Meta } from "@storybook/react";
 
+import { Text } from "../../lib/elements";
+import { TextProps } from "../../lib/types/TypographyProps";
 
-export default { title: "Typography/Paragraph", decorators: [withDesign] } as Meta;
+
+export default { title: "Typography/Paragraph", component: Text, decorators: [withDesign] } as Meta;
 
 
-const Template: Story = () => (
+const Template: Story<TextProps> = () => (
   <div>
-    <p className={"paragraph-regular-xxl"}>Paragraph Regular XXL</p> 
-    <p className={"paragraph-regular-xl"}>Paragraph Regular XL</p> 
-    <p className={"paragraph-regular-l"}>Paragraph Regular L</p> 
-    <p className={"paragraph-regular-m"}>Paragraph Regular M</p> 
-    <p className={"paragraph-regular-s"}>Paragraph Regular S</p> 
-    <p className={"paragraph-regular-xs"}>Paragraph Regular XS</p>
+		<Text size={"xxl"}>Paragraph Regular XXL</Text>
+		<Text size={"xl"}>Paragraph Regular XL</Text>
+		<Text size={"l"}>Paragraph Regular L</Text>
+		<Text size={"m"}>Paragraph Regular M</Text>
+		<Text size={"s"}>Paragraph Regular S</Text>
+		<Text size={"xs"}>Paragraph Regular XS</Text>
     <br/>
-    <p className={"paragraph-semibold-xxl"}>Paragraph Semibold XXL</p> 
-    <p className={"paragraph-semibold-xl"}>Paragraph Semibold XL</p> 
-    <p className={"paragraph-semibold-l"}>Paragraph Semibold L</p> 
-    <p className={"paragraph-semibold-m"}>Paragraph Semibold M</p> 
-    <p className={"paragraph-semibold-s"}>Paragraph Semibold S</p> 
-    <p className={"paragraph-semibold-xs"}>Paragraph Semibold XS</p> 
+		<Text size={"xxl"} fontWeight={"semibold"}>Paragraph Regular XXL</Text>
+		<Text size={"xl"} fontWeight={"semibold"}>Paragraph Regular XL</Text>
+		<Text size={"l"} fontWeight={"semibold"}>Paragraph Regular L</Text>
+		<Text size={"m"} fontWeight={"semibold"}>Paragraph Regular M</Text>
+		<Text size={"s"} fontWeight={"semibold"}>Paragraph Regular S</Text>
+		<Text size={"xs"} fontWeight={"semibold"}>Paragraph Regular XS</Text>
     <br/>
-    <p className={"paragraph-bold-xxl"}>Paragraph Bold XXL</p> 
-    <p className={"paragraph-bold-xl"}>Paragraph Bold XL</p> 
-    <p className={"paragraph-bold-l"}>Paragraph Bold L</p> 
-    <p className={"paragraph-bold-m"}>Paragraph Bold M</p> 
-    <p className={"paragraph-bold-s"}>Paragraph Bold S</p> 
-    <p className={"paragraph-bold-xs"}>Paragraph Bold XS</p> 
+		<Text size={"xxl"} fontWeight={"bold"}>Paragraph Regular XXL</Text>
+		<Text size={"xl"} fontWeight={"bold"}>Paragraph Regular XL</Text>
+		<Text size={"l"} fontWeight={"bold"}>Paragraph Regular L</Text>
+		<Text size={"m"} fontWeight={"bold"}>Paragraph Regular M</Text>
+		<Text size={"s"} fontWeight={"bold"}>Paragraph Regular S</Text>
+		<Text size={"xs"} fontWeight={"bold"}>Paragraph Regular XS</Text>
+		<br/>
+		<Text size={"xxl"} strong>Paragraph Regular XXL</Text><br/>
+		<Text size={"xxl"} italic>Paragraph Regular XXL</Text><br/>
+		<Text size={"xxl"} underline>Paragraph Regular XXL</Text><br/>
+		<Text size={"xxl"} delete>Paragraph Regular XXL</Text><br/>
+		<Text size={"xxl"} type={"success"}>Paragraph Regular XXL</Text>
+		<Text size={"xxl"} type={"secondary"}>Paragraph Regular XXL</Text>
+		<Text size={"xxl"} type={"primary"}>Paragraph Regular XXL</Text>
+		<Text size={"xxl"} type={"danger"}>Paragraph Regular XXL</Text>
+		<Text size={"xxl"} type={"warning"}>Paragraph Regular XXL</Text>
+		<Text size={"xxl"} type={"info"}>Paragraph Regular XXL</Text>
+		<Text size={"xxl"} disabled>Paragraph Regular XXL</Text>
   </div>
 );
 

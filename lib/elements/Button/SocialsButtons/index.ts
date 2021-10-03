@@ -1,13 +1,13 @@
-export * from "./AppleButton";
-export * from "./GoogleButton";
-export * from "./FacebookButton";
-export * from "./GitHubButton";
-export * from "./GitLubButton";
-export * from "./BitbucketButton";
+export { default as AppleButton } from "./AppleButton";
+export { default as GoogleButton } from "./GoogleButton";
+export { default as FacebookButton } from "./FacebookButton";
+export { default as GitHubButton } from "./GitHubButton";
+export { default as GitLubButton } from "./GitLubButton";
+export { default as BitbucketButton } from "./BitbucketButton";
 
-export * from "./IconAppleButton";
-export * from "./IconFacebookButton";
-export * from "./IconGoogleButton";
-export * from "./IconGitHubButton";
-export * from "./IconGitLubButton";
-export * from "./IconBitbucketButton";
+export { default as IconAppleButton } from "./IconAppleButton";
+export { default as IconFacebookButton } from "./IconFacebookButton";
+export { default as IconGoogleButton } from "./IconGoogleButton";
+export { default as IconGitHubButton } from "./IconGitHubButton";
+export { default as IconGitLubButton } from "./IconGitLubButton";
+export { default as IconBitbucketButton } from "./IconBitbucketButton";

@@ -1,0 +1,153 @@
+@import "lib/assets/scss/variables/colors";
+
+
+.date-picker {
+  width: 200px;
+  height: 32px;
+  border: 1px solid $gray-shade-03-light;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 12px;
+  position: absolute;
+  font-weight: "WorkSans";
+
+  &:not(&_disabled) &__icons {
+    position: relative;
+
+    &:hover {
+      .date-picker__clear-icon {
+        opacity: 1;
+
+        & + .date-picker__calendar-icon {
+          opacity: 0;
+        }
+      }
+    }
+  }
+
+  &__calendar-icon {
+    width: 16px;
+    height: 16px;
+    z-index: 1;
+  }
+
+  &__clear-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  &__input {
+    width: 100%;
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: "WorkSans";
+
+    &::placeholder {
+      color: $gray-shade-05-light;
+    }
+  }
+
+  &__dropdown-wrapper {
+    position: absolute;
+    top: 42px;
+    left: 0;
+    display: flex;
+  }
+
+  &__dropdown {
+    width: 304px;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid  $gray-shade-03-light;
+    padding: 12px;
+  }
+
+  &__dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__date-cell {
+    padding: 8px 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    overflow: hidden;
+
+    &:not(&_active):hover {
+      background-color: $gray-shade-01-light;
+      cursor: pointer;
+    }
+
+    &_active {
+      background-color: $primary-01;
+
+      .date-picker__date-cell-inner {
+        color: $white-color-0;
+      }
+    }
+  }
+
+  &__date-cell-inner {
+    width: 100%;
+    text-align: center;
+    transition: .1s all;
+    font-family: WorkSans;
+    font-size: 14px;
+    line-height: 18px;
+    color: $gray-shade-04-light;
+
+    &_current-month {
+      color: $black-color-0;
+    }
+
+    &_holiday {
+      color: $shade-natural-01;
+    }
+  }
+
+  &__arrow {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $primary-01;
+  }
+
+  &__dropdown-header-month {
+    font-family: WorkSans;
+  }
+
+  &__dropdown-sub-header-cell {
+    color: $netural-02;
+    font-weight: 400px;
+    font-size: 12px;
+    line-height: 16px;
+    font-family: WorkSans;
+    text-align: center;
+    margin-top: 12px;
+    margin-bottom: 24px;
+  }
+
+  &__dropdown-content {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse
+  }
+
+  &_disabled {
+    cursor: not-allowed;
+    background-color: #F3F4F8;
+  }
+}

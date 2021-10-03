@@ -1,0 +1,39 @@
+@import "../variables/colors.scss";
+
+.tabs {
+  &__header {
+    display: flex;
+    padding-bottom: 2px;
+    border-bottom: 1px solid $netural-01;
+  }
+
+  &__header-cell {
+    margin: 0 8px;
+    color: $netural-02;
+    cursor: pointer;
+
+    &_active {
+      color: $primary-01;
+      margin-bottom: -3px;
+      border-bottom: 2px solid $primary-01;
+    }
+
+    &:first-of-type {
+      margin-left: 0;
+    }
+   
+    .cell-label {
+      padding: 6px 2px;
+      line-height: 24px;
+      font-size: 18px;
+    }
+  }
+
+  &__content {
+    padding: 20px 0;
+  }
+}
+
+.tabs-container {
+
+}

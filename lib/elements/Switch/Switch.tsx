@@ -5,10 +5,10 @@ import classNames from "classnames";
 import { SwitchProps } from "../../types/ElementsProps";
 
 //styles
-import "../../assets/scss/elements/Switch.scss";
+import styles from "../../assets/scss/elements/Switch.module.scss";
 
 
-function Switch({ label, type = "normal", disabled = false, onChange }: SwitchProps) {
+function Switch({ label, type = "normal", disabled = false, onChange, className }: SwitchProps) {
   const [checked, setChecked] = useState(false);
 
   const handleChange = () => {
@@ -19,22 +19,23 @@ function Switch({ label, type = "normal", disabled = false, onChange }: SwitchPr
   };
 
   const switchClassNames = classNames(
-    "switch",
+    styles["switch"],
+    className,
     {
-      "switch_checked": checked,
-      "switch_disabled": disabled,
-      "switch_type-square": type === "square",
-      "switch_type-material": type === "material",
-      "switch_type-fluent": type === "fluent",
+      [styles["switch_checked"]]: checked,
+      [styles["switch_disabled"]]: disabled,
+      [styles["switch_type-square"]]: type === "square",
+      [styles["switch_type-material"]]: type === "material",
+      [styles["switch_type-fluent"]]: type === "fluent",
     }
   );
 
   return (
-    <label className="switch__wrapper">
+    <label className={styles["switch__wrapper"]}>
       <button className={switchClassNames} role="switch" onClick={handleChange}>
-        <div className="switch__handle"/>
+        <div className={styles["switch__handle"]}/>
       </button>
-      <span className="switch__label">{ label }</span>
+      <span className={styles["switch__label"]}>{ label }</span>
     </label>
   );
 }

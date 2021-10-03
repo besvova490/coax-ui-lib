@@ -21,10 +21,26 @@ import styles from "../../assets/scss/elements/Select.module.scss";
 
 
 function SelectDefault(props: SelectBaseProps): JSX.Element {
-  const { placeholder, disabled, options = [], onSelect, className, onOpen, onClose, onSearch, showSearch, style, searchFunc } = props;
+  const {
+    placeholder,
+    disabled,
+    options = [],
+    onSelect,
+    className,
+    onOpen,
+    onClose,
+    onSearch,
+    showSearch,
+    style,
+    searchFunc,
+    fullWidth,
+    size = "middle",
+    prefixIcon,
+    value = {},
+  } = props;
 
   const [open, setOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<SelectOptionProps>({});
+  const [selectedValue, setSelectedValue] = useState<SelectOptionProps>(value);
   const [searchValue, setSearchValue] = useState<string>("");
 
   const selectContainer = useRef<HTMLDivElement>(null);
@@ -49,12 +65,24 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
 
+  useEffect(() => {
+    setSelectedValue(value);
+  }, [value]);
+
   const selectClassNames = classNames(
     className,
     styles["select"],
     {
       [styles["select_open"]]: open,
-      [styles["select_isables"]]: disabled,
+      [styles["select_disabled"]]: disabled,
+    }
+  );
+
+  const selectWrapperClassNames = classNames(
+    styles["select-wrapper"],
+    styles[`select-wrapper_size-${size}`],
+    {
+      [styles["select-wrapper_full-width"]]: fullWidth,
     }
   );
 
@@ -76,22 +104,25 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
   );
 
   const toggleSelecOptionsList = () => {
+    if (disabled) return;
+
     setOpen(!open);
     if (!open && onOpen) onOpen();
     if (open && onClose) {
-      inputRef.current.blur();
+      inputRef.current && inputRef.current.blur();
       onClose();
       setSearchValue("");
     }
   };
 
-
   return (
-    <div className={styles["select__wrapper"]} onClick={toggleSelecOptionsList} ref={selectContainer}>
+    <div className={selectWrapperClassNames} onClick={toggleSelecOptionsList} ref={selectContainer}>
       <div className={selectClassNames} style={style}>
-        <span className={styles["select__icon"]}>
-          <LightningIcon/>
-        </span>
+        {
+          prefixIcon && <span className={styles["select__icon"]}>
+              { prefixIcon }
+            </span>
+        }
         <div className={styles["select__selector"]}>
           {showSearch && (
           <span className={styles["select__selection-search"]}>
@@ -105,8 +136,8 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
           )}
           {
             !searchValue
-              ? !!selectedValue.label
-                ? <span className={styles["select__selection-item"]}>{ selectedValue.label }</span>
+              ? !!selectedValue && selectedValue.value
+                ? <span className={styles["select__selection-item"]}>{ selectedValue.label || selectedValue.value }</span>
                 : <span className={styles["select__selection-placeholder"]}>{ placeholder }</span>
               : null
           }
@@ -119,7 +150,7 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
         {
           filteredOptions.length
           ? filteredOptions.map(({value, label, disabled: sleectOptionDisabled}, index) => (
-            <SelectOption key={index} value={value} label={label} disabled={sleectOptionDisabled} handleSelectOption={handleSelectOption}/>
+            <SelectOption key={index} value={value} label={label || value} disabled={sleectOptionDisabled} handleSelectOption={handleSelectOption}/>
           ))
           : <NoResults/>
         }

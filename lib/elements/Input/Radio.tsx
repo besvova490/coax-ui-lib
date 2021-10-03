@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 
 //styles
-import "../../assets/scss/elements/Radio.scss";
+import styles from "../../assets/scss/elements/Radio.module.scss";
 
 
 type Props = {
@@ -19,21 +19,23 @@ function Radio({ disabled }: Props) {
   };
 
   const checkBoxClass = classNames(
-    "radio__wrapper",
+    styles["radio__wrapper"],
     {
-      "radio__wrapper_checked": checked,
-      "radio__wrapper_disabled": disabled,
+      [styles["radio__wrapper_checked"]]: checked,
+      [styles["radio__wrapper_disabled"]]: disabled,
     }
   );
 
 
   return (
     <label className={checkBoxClass} onClick={handleChange}>
-      <span className="radio">
-        <input type="radio" className="radio__input" checked={checked}/>
-        <span className="radio__inner"><span className="radio__icon"/></span>
+      <span className={styles["radio"]}>
+        <input type="radio" className={styles["radio__input"]} checked={checked}/>
+        <span className={styles["radio__inner"]}>
+          <span className={styles["radio__icon"]}/>
+        </span>
       </span>
-      <span className="radio__label">Test</span>
+      <span className={styles["radio__label"]}>Test</span>
     </label>
   );
 }

@@ -17,8 +17,16 @@
     height: 100%;
   }
 
-  &__arrow_top {}
   &__arrow_bottom {
     transform: rotate(180deg);
   }
+
+  &__arrow_left {
+    transform: rotate(90deg);
+  }
+
+  &__arrow_right {
+    transform: rotate(-90deg);
+  }
+
 }

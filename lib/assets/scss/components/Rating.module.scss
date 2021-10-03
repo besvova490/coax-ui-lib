@@ -1,0 +1,17 @@
+@import "../variables/colors.scss";
+
+.rating {
+    &__item {
+        color: $grayscale-color-200;
+        margin: 0 1px;
+        cursor: pointer;
+    }
+    &__item_flled {
+        color: $primary-4;
+    }
+    &_disabled {
+        .rating__item {
+            cursor: default;
+        }
+    }
+}

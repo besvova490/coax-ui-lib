@@ -10,6 +10,9 @@ import { SearchProps } from "../../types/ElementsProps";
 import SearchIcon from "../../iconComponents/SearchIcon";
 import ClearIcon from "../../iconComponents/ClearIcon";
 
+//styles
+import styles from "../../assets/scss/elements/Input.module.scss";
+
 
 function Search({ allowClear, className, placeholder = "Search", searchIconPosition = "left" }: SearchProps) {
   const [searchValue, setSearchValue] = useState("");
@@ -19,7 +22,7 @@ function Search({ allowClear, className, placeholder = "Search", searchIconPosit
   };
 
   const clearSearch = () => (
-    <span onClick={() => setSearchValue("")} className={"input-search__icon"}><ClearIcon/></span>
+    <span onClick={() => setSearchValue("")} className={styles["input-search__icon"]}><ClearIcon/></span>
   );
 
   const searchSuffix = () => {

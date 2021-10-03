@@ -12,11 +12,11 @@
   text-align: left;
   border: 1px solid;
   border-color: $gray-shade-03-light;
-  height: 32px;
-  width: 200px;
   color: $black-color-0;
   transition: .2s border-color;
   display: inline-flex;
+  height: 100%;
+  width: 100%;
 
   input {
     height: 100%;
@@ -37,13 +37,6 @@
       padding: 0;
       cursor: pointer;
     }
-  }
-
-  &__wrapper {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    position: relative;
   }
 
   &__textarea {
@@ -158,6 +151,27 @@
 
   &_no-border {
     border-color: transparent;
+  }
+}
+
+.input-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  height: 32px;
+  width: 200px;
+
+  &_full-width {
+    width: 100%;
+  }
+
+  &_size-small {
+    height: 24px;
+  }
+
+  &_size-large {
+    height: 40px;
   }
 }
 

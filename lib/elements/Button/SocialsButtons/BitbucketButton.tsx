@@ -1,7 +1,7 @@
 import React from "react";
 
 //elements
-import { Button } from "../Button";
+import Button from "../Button";
 
 //interfaces
 import { SocialButtonProps } from "../../../types/ElementsProps";
@@ -25,4 +25,4 @@ function BitbucketButton(props: SocialButtonProps): JSX.Element {
 }
 
 
-export { BitbucketButton };
+export default BitbucketButton;

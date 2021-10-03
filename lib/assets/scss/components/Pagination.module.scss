@@ -1,0 +1,75 @@
+@import "../variables/colors.scss";
+
+.pagination {
+    display: flex;
+    font-family: WorkSans;
+
+    &__item {
+        margin: 5px;
+        min-width: 20px;
+        height: 20px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        color: $grayscale-color-400;
+        font-size: 14px;
+        border-radius: 4px;
+        transition: .15s;
+        cursor: pointer;
+
+        &:not(.pagination__item-control):hover {
+            color: $primary-3;
+            border: 1px solid $primary-4;
+        }
+
+        &_active {
+            color: $grayscale-color-100;
+            background-color: $primary-4;
+        }
+
+        &_options {
+            min-width: 50px;
+        }
+    }
+
+    &__item-control {
+        transition: .2s;
+
+        &:hover {
+            background-color: $grayscale-color-100;
+        }
+    }
+
+    &__item-link {
+        color: inherit;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &_disabled {
+        opacity: .7;
+
+        .pagination {
+            &__item {
+                cursor: default;
+
+                &_active {
+                    background-color: transparent;
+                    color: $grayscale-color-400;
+                }
+    
+                &:hover {
+                    border: unset;
+                    color: $grayscale-color-400;
+                }
+            }
+
+            &__item-control {
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+}

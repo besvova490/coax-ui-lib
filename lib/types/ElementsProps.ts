@@ -17,7 +17,7 @@ interface CheckBoxOnClickProps {
 
 export interface CheckBoxProps {
   checked?: boolean;
-  label?: string | React.ReactNode;
+  label?: string;
   disabled?: boolean;
   value?: string | number;
   onCheck?: ({ checked, value, label }: CheckBoxOnClickProps) => void;
@@ -68,6 +68,7 @@ export interface TextAreaProps {
 };
 
 export interface SwitchProps {
+  className?: string;
   label?: string;
   disabled?: boolean;
   type?: "normal" | "square" | "material" | "fluent";
@@ -103,6 +104,7 @@ export interface InputProps {
   disabled?: boolean;
   borderRadius?: boolean;
   success?: boolean;
+  fullWidth?: boolean;
   maxLength?: number;
   showMaxLength?: boolean;
   onChange?: (value: string) => void;
@@ -110,6 +112,7 @@ export interface InputProps {
   error?:string | React.ReactNode;
   prefix?: string | React.ReactNode;
   suffix?: string | React.ReactNode;
+  size?: "small" | "middle" | "large";
 };
 
 export interface SelectOptionProps {
@@ -134,7 +137,12 @@ export interface SelectBaseProps {
   onClose?: () => void;
   onSearch?: (searchWords: string) => void;
   showSearch?: boolean,
+  size?: "small" | "middle" | "large";
+  fullWidth?: boolean;
   style?: Record<string, unknown>,
+  prefixIcon?: React.ReactNode;
+  value?: SelectOptionProps,
+  defaultValue?: SelectOptionProps,
   searchFunc?: (searchWords: string, options: Array<SelectOptionProps>) => Array<SelectOptionProps>;
 }
 
@@ -159,3 +167,17 @@ export interface NoResultsProps {
   searchWords?: string;
   className?: string;
 };
+
+
+export interface BaseCalendarProps {
+  allowClear?: boolean;
+  className?: string;
+  disabled?: boolean;
+  open?: boolean;
+  placeholder?: string;
+  style?: Record<string, unknown>;
+  onOpenChange?: (isOpen: boolean) => void;
+  format?: string;
+  onChange?: (date: string) => void;
+  onClear?: () => void;
+}
