@@ -51,8 +51,8 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
     const handleClickOutside = (event: Event) => {
       if (open && selectContainer.current && !selectContainer.current.contains(event.target as Node)) {
         setOpen(false);
-        onClose();
-        setSearchValue("");
+        onClose && onClose();
+        showSearch && setSearchValue("");
       }
     };
 
@@ -66,7 +66,7 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
   }, [open]);
 
   useEffect(() => {
-    setSelectedValue(value);
+    if (value && "value" in value && value.value !== selectedValue.value) setSelectedValue(value);
   }, [value]);
 
   const selectClassNames = classNames(
@@ -87,13 +87,13 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
   );
 
   const handleSelectOption = value => {
-    setSearchValue("");
     setSelectedValue(value);
+    showSearch && setSearchValue("");
     onSelect && onSelect(value);
   };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.currentTarget.value);
+    showSearch && setSearchValue(e.currentTarget.value);
     onSearch && onSearch(e.target.value);
   }
 
@@ -108,10 +108,10 @@ function SelectDefault(props: SelectBaseProps): JSX.Element {
 
     setOpen(!open);
     if (!open && onOpen) onOpen();
-    if (open && onClose) {
+    if (open) {
       inputRef.current && inputRef.current.blur();
-      onClose();
-      setSearchValue("");
+      onClose && onClose();
+      showSearch && setSearchValue("");
     }
   };
 
