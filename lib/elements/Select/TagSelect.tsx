@@ -53,8 +53,8 @@ function Select(props: SelectBaseProps): JSX.Element {
       if (open && selectContainer.current && !selectContainer.current.contains(event.target as Node)) {
         setOpen(false);
         inputRef.current && inputRef.current.blur();
-        onClose();
-        setSearchValue("");
+        onClose && onClose();
+        showSearch && setSearchValue("");
       }
     };
 
@@ -96,12 +96,12 @@ function Select(props: SelectBaseProps): JSX.Element {
       setSelectedValues([...selectedValues, selectItem]);
     }
 
-    setSearchValue("");
+    showSearch && setSearchValue("");
     onSelect && onSelect(value);
   };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.currentTarget.value);
+    showSearch &&  setSearchValue(e.currentTarget.value);
     onSearch && onSearch(e.target.value);
   };
 
@@ -119,10 +119,10 @@ function Select(props: SelectBaseProps): JSX.Element {
   const toggleSelecOptionsList = () => {
     setOpen(!open);
     if (!open && onOpen) onOpen();
-    if (open && onClose) {
+    if (open) {
       inputRef.current && inputRef.current.blur();
-      onClose();
-      setSearchValue("");
+      onClose && onClose();
+      showSearch && setSearchValue("");
     }
   }
 
