@@ -1,6 +1,6 @@
 {
   "name": "coax-ui-lib",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "",
   "private": false,
   "main": "bundle/lib/index.js",

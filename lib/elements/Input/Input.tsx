@@ -61,14 +61,14 @@ function Input(props: InputProps) {
     }
   );
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!maxLength) {
       setInputValue(e.currentTarget.value);
-      onChange && onChange(e.currentTarget.value);
+      onChange && onChange(e);
     }
     else if (e.currentTarget.value.length <= maxLength) {
       setInputValue(e.currentTarget.value);
-      onChange && onChange(e.currentTarget.value);
+      onChange && onChange(e);
     }
   };
 

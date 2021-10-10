@@ -17,8 +17,8 @@ import styles from "../../assets/scss/elements/Input.module.scss";
 function Search({ allowClear, className, placeholder = "Search", searchIconPosition = "left" }: SearchProps) {
   const [searchValue, setSearchValue] = useState("");
 
-  const handleChange = (value: string) => {
-    setSearchValue(value);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
   };
 
   const clearSearch = () => (

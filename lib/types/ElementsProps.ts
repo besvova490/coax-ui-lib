@@ -1,4 +1,4 @@
-import React from "react";
+import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 
 
 export interface PreloaderProps {
@@ -82,34 +82,30 @@ export interface SearchProps {
   searchIconPosition?: "left" | "right";
 };
 
-export interface InputNumberProps {
+export interface InputBaseProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, | "size" |"prefix"> {
   className?: string;
-  defaultValue?: number;
-  value?: number;
   bordered?: boolean;
   disabled?: boolean;
   borderRadius?: boolean;
   success?: boolean;
   label?: string | React.ReactNode;
   error?: string | React.ReactNode;
+}
+
+export interface InputNumberProps extends InputBaseProps {
+  defaultValue?: number;
+  value?: number;
 };
 
-export interface InputProps {
+export interface InputProps extends InputBaseProps {
   value?: string;
   type?: string;
-  className?: string;
   placeholder?: string;
   defaultValue?: string;
-  bordered?: boolean;
-  disabled?: boolean;
-  borderRadius?: boolean;
-  success?: boolean;
   fullWidth?: boolean;
   maxLength?: number;
   showMaxLength?: boolean;
-  onChange?: (value: string) => void;
-  label?: string | React.ReactNode;
-  error?:string | React.ReactNode;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   prefix?: string | React.ReactNode;
   suffix?: string | React.ReactNode;
   size?: "small" | "middle" | "large";
