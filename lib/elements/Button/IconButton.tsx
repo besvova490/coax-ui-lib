@@ -20,6 +20,7 @@ function IconButton(props: ButtonProps): JSX.Element {
     type = "primary",
     size = "middle",
     shape = "round",
+    htmlType,
   } = props;
 
   const IconButtonClassNames = classNames(
@@ -58,7 +59,7 @@ function IconButton(props: ButtonProps): JSX.Element {
       );
     default:
       return (
-        <button className={IconButtonClassNames} disabled={disabled} onClick={handleClick}>
+        <button className={IconButtonClassNames} disabled={disabled} onClick={handleClick} type={htmlType}>
           {icon}
         </button>
       );

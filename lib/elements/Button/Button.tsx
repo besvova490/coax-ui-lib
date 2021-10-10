@@ -28,6 +28,7 @@ function Button (props: ButtonProps): JSX.Element {
     size = "middle",
     type = "primary",
     shape = "round",
+    htmlType,
     ...rest
   } = props;
 
@@ -90,7 +91,7 @@ function Button (props: ButtonProps): JSX.Element {
       );
     default:
       return (
-        <button className={classNameList} disabled={disabled} {...rest} onClick={handleClick}>
+        <button className={classNameList} disabled={disabled} {...rest} onClick={handleClick} type={htmlType}>
           {
             loading
               ? <Preloader color={preloaderColor} boxHeight={20}/>

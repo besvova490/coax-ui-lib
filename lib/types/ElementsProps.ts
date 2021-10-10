@@ -45,6 +45,7 @@ export interface IconButtonProps {
   href?: string;
   disabled?: boolean;
   className?: string;
+  htmlType?: "button" | "submit" | "reset";
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
